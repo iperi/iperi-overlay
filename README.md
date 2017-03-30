@@ -22,7 +22,7 @@ Make sure that `/etc/portage/repos.conf` exists, and is a directory. Then, open 
 
     # nano -w /etc/portage/repos.conf/iperi-overlay.conf
 
-and putt the following text in the file:
+and put the following text in the file:
 ```
 [iperi-overlay]
 
