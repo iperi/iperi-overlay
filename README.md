@@ -39,7 +39,7 @@ Sync the repository:
 ### Mask repository for security
 The main advantage of masking is that no unwanted packages from repository will conflict with official portage tree during system updates.
 
-Make sure that `/etc/portage/package.mask`, `/etc/portage/package.unmask` exists, and are directories. Mask all packages from repository:
+Make sure that `/etc/portage/package.mask`, `/etc/portage/package.unmask` exist, and are directories. Mask all packages from repository:
 
     # echo "*/*::iperi-overlay" >> /etc/portage/package.mask/iperi-overlay
 
