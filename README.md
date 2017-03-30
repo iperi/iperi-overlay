@@ -10,7 +10,7 @@ Overlay containing various ebuilds for Gentoo.
 ## Warning
 **Use ebuilds supplied in this repository on your own risk.**
 
-## Instalation
+## Installation
 ### Add repository to portage
 These are instructions for version >= 2.2.16 of Portage using [new plug-in sync system](https://wiki.gentoo.org/wiki/Project:Portage/Sync).
 
