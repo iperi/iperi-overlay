@@ -5,8 +5,8 @@ EAPI=5
 inherit eutils versionator
 
 SLOT="0"
-PV_STRING="$(get_version_component_range 3-6)"
-MY_PV="$(get_version_component_range 1-2)"
+PV_STRING="$(get_version_component_range 4-6)"
+MY_PV="$(get_version_component_range 1-3)"
 MY_PN="idea"
 
 # distinguish settings for official stable releases and EAP-version releases
@@ -14,11 +14,11 @@ if [[ "$(get_version_component_range 7)x" = "prex" ]]
 then
 	# upstream EAP
 	KEYWORDS=""
-	SRC_URI="https://download.jetbrains.com/idea/${MY_PN}IC-${PV_STRING}.tar.gz"
+	SRC_URI="https://download-cf.jetbrains.com/idea/${MY_PN}IC-${PV_STRING}.tar.gz"
 else
 	# upstream stable
 	KEYWORDS="~amd64 ~x86"
-	SRC_URI="https://download.jetbrains.com/idea/${MY_PN}IC-${MY_PV}.tar.gz -> ${MY_PN}IC-${PV_STRING}.tar.gz"
+	SRC_URI="https://download-cf.jetbrains.com/idea/${MY_PN}IC-${MY_PV}.tar.gz -> ${MY_PN}IC-${PV_STRING}.tar.gz"
 fi
 
 DESCRIPTION="A complete toolset for web, mobile and enterprise development"
