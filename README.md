@@ -2,7 +2,6 @@
 Overlay containing various ebuilds for Gentoo.
 
 ## List of ebuilds
-* dev-util/clion
 * dev-util/idea-community
 * games-puzzle/vitetris
 * sys-firmware/iwl7260-ucode
