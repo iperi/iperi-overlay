@@ -1,15 +1,13 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=6
 
-inherit eutils versionator
+inherit eutils
 
 SLOT="0"
-PV_STRING="$(get_version_component_range 4-6)"
-MY_PV="$(get_version_component_range 1-3)"
 
-SRC_URI="https://download.jetbrains.com/cpp/CLion-${MY_PV}.tar.gz -> ${PN}-${MY_PV}.tar.gz"
+SRC_URI="https://download.jetbrains.com/cpp/CLion-${PV}.tar.gz -> ${P}.tar.gz"
 DESCRIPTION="A complete toolset for C and C++ development"
 HOMEPAGE="https://www.jetbrains.com/clion"
 
@@ -17,46 +15,37 @@ KEYWORDS="~amd64 ~x86"
 LICENSE="IDEA
 	|| ( IDEA_Academic IDEA_Classroom IDEA_OpenSource IDEA_Personal )"
 
-IUSE=""
-
+# RDEPENDS may cause false positives in repoman.
+# clion requires cmake and gdb at runtime to build and debug C/C++ projects
 RDEPEND="
-	${DEPEND}
 	sys-devel/gdb
 	dev-util/cmake"
 
-S="${WORKDIR}/${PN}-${MY_PV}"
-
-QA_PREBUILT="opt/${PN}-${MY_PV}/*"
+QA_PREBUILT="opt/${P}/*"
 
 src_prepare() {
-	if ! use amd64; then
-		rm -r plugins/tfsIntegration/lib/native/linux/x86_64 || die
-	fi
-	if ! use arm; then
-		rm bin/fsnotifier-arm || die
-		rm -r plugins/tfsIntegration/lib/native/linux/arm || die
-	fi
-	if ! use ppc; then
-		rm -r plugins/tfsIntegration/lib/native/linux/ppc || die
-	fi
-	if ! use x86; then
-		rm -r plugins/tfsIntegration/lib/native/linux/x86 || die
-	fi
+	default
 
-	local REMOVE_ME=(
-		bin/gdb
-	    bin/cmake
-	    license/GDB*
-	    license/CMake*
+	local remove_me=(
+		bin/gdb/bin
+		bin/gdb/lib
+		bin/gdb/share
+		bin/cmake
+		license/CMake*
 		plugins/tfsIntegration/lib/native/hpux
 		plugins/tfsIntegration/lib/native/solaris
 	)
 
-	rm -r "${REMOVE_ME[@]}" || die
+	use amd64 || remove_me+=( plugins/tfsIntegration/lib/native/linux/x86_64 )
+	use arm || remove_me+=( bin/fsnotifier-arm plugins/tfsIntegration/lib/native/linux/arm )
+	use ppc || remove_me+=( plugins/tfsIntegration/lib/native/linux/ppc )
+	use x86 || remove_me+=( plugins/tfsIntegration/lib/native/linux/x86 )
+
+	rm -rv "${remove_me[@]}" || die
 }
 
 src_install() {
-	local dir="/opt/${PN}-${MY_PV}"
+	local dir="/opt/${P}"
 
 	insinto "${dir}"
 	doins -r *
