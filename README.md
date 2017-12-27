@@ -2,6 +2,7 @@
 Overlay containing various ebuilds for Gentoo.
 
 ## List of ebuilds
+* dev-util/clion
 * dev-util/idea-community
 * dev-util/idea-ultimate
 * games-puzzle/vitetris
