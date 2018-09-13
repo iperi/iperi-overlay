@@ -1,25 +1,27 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
 
-inherit eutils
+inherit desktop eutils
 
-SLOT="0"
-
-SRC_URI="https://download.jetbrains.com/cpp/CLion-${PV}.tar.gz -> ${P}.tar.gz"
 DESCRIPTION="A complete toolset for C and C++ development"
 HOMEPAGE="https://www.jetbrains.com/clion"
+SRC_URI="https://download-cf.jetbrains.com/cpp/CLion-${PV}.tar.gz -> ${P}.tar.gz"
 
-KEYWORDS="~amd64 ~x86"
 LICENSE="IDEA
 	|| ( IDEA_Academic IDEA_Classroom IDEA_OpenSource IDEA_Personal )"
+SLOT="0"
+KEYWORDS="~amd64 ~x86"
+RESTRICT="splitdebug"
+IUSE="-custom-jdk"
 
 # RDEPENDS may cause false positives in repoman.
 # clion requires cmake and gdb at runtime to build and debug C/C++ projects
 RDEPEND="
 	sys-devel/gdb
-	dev-util/cmake"
+	dev-util/cmake
+	!custom-jdk? ( virtual/jdk )"
 
 QA_PREBUILT="opt/${P}/*"
 
@@ -27,9 +29,8 @@ src_prepare() {
 	default
 
 	local remove_me=(
-		bin/gdb/bin
-		bin/gdb/lib
-		bin/gdb/share
+		bin/gdb/linux
+		bin/lldb/linux
 		bin/cmake
 		license/CMake*
 		plugins/tfsIntegration/lib/native/hpux
@@ -41,6 +42,8 @@ src_prepare() {
 	use ppc || remove_me+=( plugins/tfsIntegration/lib/native/linux/ppc )
 	use x86 || remove_me+=( plugins/tfsIntegration/lib/native/linux/x86 )
 
+	use custom-jdk || remove_me+=( jre64 )
+
 	rm -rv "${remove_me[@]}" || die
 }
 
@@ -49,13 +52,19 @@ src_install() {
 
 	insinto "${dir}"
 	doins -r *
-	fperms 755 "${dir}"/bin/{clion.sh,fsnotifier{,64}}
+	fperms 755 "${dir}"/bin/{clion.sh,fsnotifier{,64},clang/linux/clang{d,-tidy}}
+
+	if use custom-jdk; then
+		if [[ -d jre64 ]]; then
+		fperms 755 "${dir}"/jre64/bin/{java,jjs,keytool,orbd,pack200,policytool,rmid,rmiregistry,servertool,tnameserv,unpack200}
+		fi
+	fi
 
 	make_wrapper "${PN}" "${dir}/bin/${PN}.sh"
 	newicon "bin/${PN}.svg" "${PN}.svg"
 	make_desktop_entry "${PN}" "clion" "${PN}" "Development;IDE;"
 
 	# recommended by: https://confluence.jetbrains.com/display/IDEADEV/Inotify+Watches+Limit
-	mkdir -p "${D}/etc/sysctl.d/" || die
-	echo "fs.inotify.max_user_watches = 524288" > "${D}/etc/sysctl.d/30-idea-inotify-watches.conf" || die
+	dodir /usr/lib/sysctl.d/
+	echo "fs.inotify.max_user_watches = 524288" > "${D}/usr/lib/sysctl.d/30-clion-inotify-watches.conf" || die
 }
