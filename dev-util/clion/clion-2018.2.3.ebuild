@@ -33,8 +33,12 @@ src_prepare() {
 		bin/lldb/linux
 		bin/cmake
 		license/CMake*
+		plugins/tfsIntegration/lib/native/aix
+		plugins/tfsIntegration/lib/native/freebsd
 		plugins/tfsIntegration/lib/native/hpux
+		plugins/tfsIntegration/lib/native/macosx
 		plugins/tfsIntegration/lib/native/solaris
+		plugins/tfsIntegration/lib/native/win32
 	)
 
 	use amd64 || remove_me+=( plugins/tfsIntegration/lib/native/linux/x86_64 )
