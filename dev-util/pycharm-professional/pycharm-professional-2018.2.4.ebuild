@@ -35,7 +35,9 @@ src_prepare() {
 }
 
 src_install() {
-	insinto /opt/${PN}
+	local dir="/opt/${PN}"
+
+	insinto "${dir}"
 	doins -r *
 
 	fperms a+x /opt/${PN}/bin/{pycharm.sh,fsnotifier{,64},inspect.sh}
