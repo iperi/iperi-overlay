@@ -5,6 +5,7 @@ Overlay containing various ebuilds for Gentoo.
 * dev-util/clion
 * dev-util/idea-community
 * dev-util/idea-ultimate
+* dev-util/pycharm-community
 * games-puzzle/vitetris
 * sys-firmware/iwl7260-ucode
 
