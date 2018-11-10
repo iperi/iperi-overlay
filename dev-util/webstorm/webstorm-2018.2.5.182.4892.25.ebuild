@@ -22,19 +22,19 @@ S="${WORKDIR}/WebStorm-$(get_version_component_range 4-6)"
 QA_PREBUILT="opt/${PN}/*"
 
 src_install() {
-    local dir="/opt/${PN}"
+	local dir="/opt/${PN}"
 
 	insinto "${dir}"
 	doins -r *
 	fperms 755 "${dir}"/bin/{webstorm.sh,fsnotifier{,64}}
-	
+
 	if use custom-jdk; then
 		if [[ -d jre64 ]]; then
 		fperms 755 "${dir}"/jre64/bin/{java,jjs,keytool,orbd,pack200,policytool,rmid,rmiregistry,servertool,tnameserv,unpack200}
 		fi
 	fi
-	
+
 	make_wrapper "${PN}" "${dir}/bin/${PN}.sh"
-	newicon "bin/${PN}.png" "${PN}.svg"
+	newicon "bin/${PN}.svg" "${PN}.svg"
 	make_desktop_entry "${PN}" "WebStorm" "${PN}" "Development;IDE;"
 }
