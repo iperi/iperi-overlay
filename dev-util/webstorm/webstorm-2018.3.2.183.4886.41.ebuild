@@ -7,7 +7,7 @@ inherit eutils versionator
 
 DESCRIPTION="JavaScript IDE for client- and server-side development with Node.js"
 HOMEPAGE="https://www.jetbrains.com/webstorm"
-SRC_URI="https://download.jetbrains.com/${PN}/WebStorm-$(get_version_component_range 1-2).tar.gz"
+SRC_URI="https://download.jetbrains.com/${PN}/WebStorm-$(get_version_component_range 1-3).tar.gz"
 
 LICENSE="WebStorm WebStorm_Academic WebStorm_Classroom WebStorm_OpenSource WebStorm_personal"
 SLOT="0"
@@ -18,7 +18,7 @@ RESTRICT="splitdebug" #656858
 
 RDEPEND=">=virtual/jdk-1.7:*"
 
-S="${WORKDIR}/WebStorm-$(get_version_component_range 3-6)"
+S="${WORKDIR}/WebStorm-$(get_version_component_range 4-6)"
 QA_PREBUILT="opt/${PN}/*"
 
 src_install() {
