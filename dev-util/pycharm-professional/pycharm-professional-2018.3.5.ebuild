@@ -11,7 +11,7 @@ SRC_URI="https://download-cf.jetbrains.com/python/${P}.tar.gz"
 
 LICENSE="PyCharm_Academic PyCharm_Classroom PyCharm PyCharm_OpenSource PyCharm_Preview"
 SLOT="0"
-KEYWORDS="amd64 x86"
+KEYWORDS="~amd64 ~x86"
 IUSE="-custom-jdk"
 
 RDEPEND="!custom-jdk? ( >=virtual/jre-1.8 )
@@ -26,7 +26,7 @@ QA_PREBUILT="opt/${PN}/bin/fsnotifier
 	opt/${PN}/bin/libyjpagent-linux64.so"
 
 MY_PN=${PN/-professional/}
-S="${WORKDIR}/${MY_PN}-${PV}"
+S="${WORKDIR}/${PN}-${PV}"
 
 src_prepare() {
 	default
