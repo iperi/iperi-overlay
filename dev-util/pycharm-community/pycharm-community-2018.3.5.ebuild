@@ -11,7 +11,7 @@ SRC_URI="https://download-cf.jetbrains.com/python/${P}.tar.gz"
 
 LICENSE="Apache-2.0 BSD CDDL MIT-with-advertising"
 SLOT="0"
-KEYWORDS="amd64 x86"
+KEYWORDS="~amd64 ~x86"
 IUSE="-custom-jdk"
 
 RDEPEND="!custom-jdk? ( >=virtual/jre-1.8 )
@@ -24,7 +24,7 @@ QA_PREBUILT="opt/${PN}/bin/fsnotifier
 	opt/${PN}/bin/fsnotifier-arm"
 
 MY_PN=${PN/-community/}
-S="${WORKDIR}/${MY_PN}-${PV}"
+S="${WORKDIR}/${PN}-${PV}"
 
 src_prepare() {
 	default
