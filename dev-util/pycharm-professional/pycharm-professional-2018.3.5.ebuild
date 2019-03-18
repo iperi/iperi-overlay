@@ -26,7 +26,7 @@ QA_PREBUILT="opt/${PN}/bin/fsnotifier
 	opt/${PN}/bin/libyjpagent-linux64.so"
 
 MY_PN=${PN/-professional/}
-S="${WORKDIR}/${PN}-${PV}"
+S="${WORKDIR}/${MY_PN}-${PV}"
 
 src_prepare() {
 	default
