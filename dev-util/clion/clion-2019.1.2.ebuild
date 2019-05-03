@@ -33,18 +33,10 @@ src_prepare() {
 		bin/lldb/linux
 		bin/cmake
 		license/CMake*
-		plugins/tfsIntegration/lib/native/aix
-		plugins/tfsIntegration/lib/native/freebsd
-		plugins/tfsIntegration/lib/native/hpux
-		plugins/tfsIntegration/lib/native/macosx
-		plugins/tfsIntegration/lib/native/solaris
-		plugins/tfsIntegration/lib/native/win32
+		help/
 	)
 
-	use amd64 || remove_me+=( plugins/tfsIntegration/lib/native/linux/x86_64 )
-	use arm || remove_me+=( bin/fsnotifier-arm plugins/tfsIntegration/lib/native/linux/arm )
-	use ppc || remove_me+=( plugins/tfsIntegration/lib/native/linux/ppc )
-	use x86 || remove_me+=( plugins/tfsIntegration/lib/native/linux/x86 )
+	use arm || remove_me+=( bin/fsnotifier-arm )
 
 	use custom-jdk || remove_me+=( jre64 )
 
