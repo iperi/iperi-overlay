@@ -75,7 +75,7 @@ src_install() {
 	fi
 
 	make_wrapper "${PN}" "${dir}/bin/${MY_PN}.sh"
-	newicon "bin/${MY_PN}.png" "${PN}.png"
+	newicon "bin/${MY_PN}.svg" "${PN}.svg"
 	make_desktop_entry "${PN}" "IntelliJ Idea Ultimate" "${PN}" "Development;IDE;"
 
 	# recommended by: https://confluence.jetbrains.com/display/IDEADEV/Inotify+Watches+Limit
