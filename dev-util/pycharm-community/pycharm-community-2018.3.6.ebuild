@@ -15,7 +15,7 @@ KEYWORDS="~amd64 ~x86"
 IUSE="-custom-jdk"
 
 RDEPEND="!custom-jdk? ( >=virtual/jre-1.8 )
-	 dev-python/pip"
+	dev-python/pip"
 
 RESTRICT="mirror strip"
 
