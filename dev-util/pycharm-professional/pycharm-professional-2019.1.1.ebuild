@@ -31,7 +31,13 @@ S="${WORKDIR}/${MY_PN}-${PV}"
 src_prepare() {
 	default
 
-	use custom-jdk || rm -rf jre64
+	local remove_me=(
+		help/
+	)
+
+	use custom-jdk || remove_me+=( jre64 )
+
+	rm -vr "${remove_me[@]}" || die
 }
 
 src_install() {
