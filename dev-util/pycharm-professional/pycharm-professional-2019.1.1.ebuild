@@ -55,7 +55,7 @@ src_install() {
 	fi
 
 	dosym ../../opt/${PN}/bin/pycharm.sh /usr/bin/${PN}
-	newicon bin/${MY_PN}.png ${PN}.png
+	newicon bin/${MY_PN}.svg ${PN}.svg
 	make_desktop_entry ${PN} ${PN} ${PN}
 
 	readme.gentoo_create_doc
