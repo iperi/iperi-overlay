@@ -14,11 +14,11 @@ if [[ "$(get_version_component_range 7)x" = "prex" ]]
 then
 	# upstream EAP
 	KEYWORDS=""
-	SRC_URI="https://download-cf.jetbrains.com/idea/${MY_PN}IC-${PV_STRING}.tar.gz"
+	SRC_URI="http://download.jetbrains.com/idea/${MY_PN}IC-${PV_STRING}.tar.gz"
 else
 	# upstream stable
 	KEYWORDS="~amd64 ~x86"
-	SRC_URI="https://download-cf.jetbrains.com/idea/${MY_PN}IC-${MY_PV}.tar.gz -> ${MY_PN}IC-${PV_STRING}.tar.gz"
+	SRC_URI="http://download.jetbrains.com/idea/${MY_PN}IC-${MY_PV}.tar.gz -> ${MY_PN}IC-${PV_STRING}.tar.gz"
 fi
 
 DESCRIPTION="A complete toolset for web, mobile and enterprise development"

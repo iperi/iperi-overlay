@@ -7,7 +7,7 @@ inherit desktop eutils
 
 DESCRIPTION="A complete toolset for C and C++ development"
 HOMEPAGE="https://www.jetbrains.com/clion"
-SRC_URI="https://download-cf.jetbrains.com/cpp/CLion-${PV}.tar.gz -> ${P}.tar.gz"
+SRC_URI="http://download.jetbrains.com/cpp/CLion-${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="IDEA
 	|| ( IDEA_Academic IDEA_Classroom IDEA_OpenSource IDEA_Personal )"
